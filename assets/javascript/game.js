@@ -23,7 +23,7 @@ const laComida = [
     'sofrito',
     'tostones',
 ];
-
+// create an array for the current word
 const cajaDeJuego = [];
 // ==========================================
 // FUNCTIONS
