@@ -68,12 +68,12 @@ currentWordElement.innerText = cajaDeJuego.join(" ");
 
 //create event key function: s
 let iGotTheKeys = (event) => {
-    let key = event.key;
+    let key = () => event.key;
     // store index number in stringIndex variable
     // function revealLetters() {
     for (let p = 0; p < cajaDeJuego.length; p++) {
         // general
-        if (key === splitWord[p]) {
+        if (key() === splitWord[p]) {
             // if every index equals the key then reveal the indices
             let replaceChar = () => cajaDeJuego.splice(p, 1, splitWord[p]);
             // execute function
@@ -81,26 +81,33 @@ let iGotTheKeys = (event) => {
         }
     }
 
-    isNotEqualToKey = arrayElement => key !== arrayElement;
+    isNotEqualToKey = arrayElement => key() !== arrayElement;
     // log key to console
-    console.log(key);
+    console.log(key());
 
     let wrongLetters = splitWord.every(isNotEqualToKey);
     // console.log(wrongLetters);
 
-
-    // conditional statement: if wrongLetter is truthy, push to lettersGuessed
     // function: push incorrect letters to lettersGuessed array
+    let incorrects = () => lettersGuessed.push(key());
+
+
+    // function: for-loop checks key against the entire lettersGuessed array
+    for (let b = 0; b < lettersGuessed.length; b++) {
+        if (key !== lettersGuessed[b]) {
+            console.log('Not here')
+        } else {console.log('Here')}
+        
+    }
+
+
 
 
     if (wrongLetters) {
         guessesLeft--;
 
-        for (let b = 0; b <= lettersGuessed.length; b++) {
-            if (key !== lettersGuessed[b]) {
-                lettersGuessed.push(key);
-            }
-        }
+
+        // }
     }
 
     // send wrong letters to lettersGuessed array
@@ -126,4 +133,3 @@ let iGotTheKeys = (event) => {
 }
 // add event listener: s
 document.addEventListener('keypress', iGotTheKeys);
-
